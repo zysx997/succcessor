@@ -98,22 +98,24 @@
 
 \section{对后继集合的研究}
 
-现在我们的任务是，对一个一般的后继集合$(X, s)$，研究它的性质。为了方便之后的讨论，我们约定$X$总是非空的。
+\subsection{后继闭集和后继闭包}
 
-因为后继集合$X$上有后继算子$s$，我们可以考虑从一个元素$x$出发，对$x$施以$s$的多次作用，得到一系列元素$x, xs, xss, xsss, \cdots$。我们先研究这样的一系列元素，将其放在一个集合中，我们称之为$x$生成的后继闭包，记为$\overline{x}$。
+现在我们的任务是，对一个一般的后继集合$(X, s)$，研究它的性质。在接下来的讨论中，我们时常会设出一个点$x \in X$，如果我们这么做了，那么我们就默认此时$X$是非空的。请注意这一点。
+
+因为后继集合$X$上有后继算子$s$，我们可以考虑从一个元素$x$出发，对$x$施以$s$的多次作用，得到一系列元素$x, xs, xss, xsss, \cdots$。我们先研究这样的一系列元素，将其放在一个集合中，我们称之为元素$x$的后继闭包，记为$\overline{x}$。
 %注意这里我们将$x$记在右边，表示$x$得到的后继子集，但是在表示$x$在映射$s$下的像时，我们将$x$记在左边。这么做的原因是，在表示$x$在映射$s$下的像时，我们是将像作为一个整体考虑的，这时为了使映射的复合符合我们从左向右书写的规则，我们将映射写在右边，将参与映射的元素$x$记在左边；而在表示$x$生成的后继子集时，我们更强调$T_{\bullet}$是一种“抽象的子集”，而将$T_x$看成抽象的子集应用于$x$的结果。这里我们将$T_{\bullet}$与$x$分开来看了，先有了$T_{\bullet}$，再有了应用于$x$得到的$T_x$，所以我们将$x$作为放在右边的下标。
 %这一段已经过时，因为采用了闭包的符号，不再需要这样的记号。
 
-然而，上面对$x$生成的后继闭包的定义并不严谨，什么是集合$\{x, xs, xss, xsss, \cdots\}$？这个集合的元素我们似乎完全无法列举出来。因此，我们在定义$\overline{x}$时，要考虑另一种定义方法：考虑$\overline{x}$应该满足什么性质。我们将$\overline{x}$的性质分为两部分，一是$\overline{x}$包含$x$，二是$\overline{x}$在我们讨论的集合$X$的后继算子$s$下封闭。我们将前者称为Base性质，后者称为Inductive性质。这里，我们其实又在做第一步抽象，其抽象出了$\overline{x}$应满足的性质，然而我们将看到，这个性质不足以唯一地确定一个子集。因此，我们不妨先考虑所有满足这个性质的子集的集合，我们称之为含$x$的后继闭子集族，记为$\mathcal{C}_x$，其中$\mathcal{C}$表示“闭集”（closed set）。
+然而，上面对$x$的后继闭包的定义并不严谨，什么是集合$\{x, xs, xss, xsss, \cdots\}$？这个集合的元素我们似乎完全无法列举出来。因此，我们在定义$\overline{x}$时，要考虑另一种定义方法：考虑$\overline{x}$应该满足什么性质。我们将$\overline{x}$的性质分为两部分，一是$\overline{x}$包含$x$，二是$\overline{x}$在我们讨论的集合$X$的后继算子$s$下封闭。我们将前者称为Base性质，后者称为Inductive性质。这里，我们其实又在做第一步抽象，其抽象出了$\overline{x}$应满足的性质，然而我们将看到，这个性质不足以唯一地确定一个子集。因此，我们不妨先考虑所有满足这个性质的子集的集合，我们称之为含$x$的后继闭集族，记为$\mathcal{C}_x$，其中$\mathcal{C}$表示“闭集”（closed set）。
 
 注意这里我们是将$x$记在$\mathcal{C}$的右边的。这与我们在表示$x$在映射$s$下的像时将$x$记在左边的原因是一样的。我们将$x$放在右边，是因为我们对每个$x \in X$都能定义$\mathcal{C}_x$，相当于我们有了抽象的集族$\mathcal{C}_{\bullet}$，再将抽象的集族应用于$x$得到具体的集族$\mathcal{C}_x$，所以我们将$x$作为放在右边的下标。这样的记号也是为了使我们的记号符合我们从左向右书写的规则。甚至可以理解为，$x$是一个映射，将$\mathcal{C}_\bullet$映射到$\mathcal{C}_x$，这样的记号也是合理的。
 
 我们接下来将$\mathcal{C}_x$的定义写出来：
 
-\begin{definition}
-	对于后继集合$(X, s)$，$x \in X$，我们定义$x$生成的后继闭子集族$\mathcal{C}_x$为满足以下性质的集合$T$的集族：
+\begin{definition}[含$x$的后继闭集族$\mathcal{C}_x$]
+	对于后继集合$(X, s)$，$x \in X$，我们定义含$x$的后继闭子集族$\mathcal{C}_x$为满足以下性质的集合$T \subset X$的集族：
 	\begin{description}
-		\item[Base] $x \in T$
+		\item[Base on $x$] $x \in T$
 		\item[Inductive] $\mathop{\forall}\limits_{y \in T} ys \in T$
 	\end{description}
 \end{definition}
@@ -140,9 +142,142 @@
 
 因此，我们可以将$\overline{x}$定义为$\bigcap\mathcal{C}_x$。这样，我们就得到了$x$生成的后继闭包$\overline{x}$的定义。
 
+\begin{definition}[元素$x$的后继闭包]
+	对于后继集合$(X, s)$，$x \in X$，我们定义$x$生成的后继闭包$\overline{x}$为$\bigcap\mathcal{C}_x$。
+\end{definition}
+
+\begin{property}
+	对于后继集合$(X, s)$，$x \in X$，$\overline{x}$是$\mathcal{C}_x$关于包含关系$\subset$的最小元。这个事实包含两个性质：一是$\overline{x}$本身是一个含$x$的后继闭集，即$\overline{x} \in \mathcal{C}_x$；二是对于任意含$x$的后继闭集$T \in \mathcal{C}_x$，有$\overline{x} \subset T$。
+\end{property}
+
 \begin{remark}
 从另一个角度说，我们对后继闭包$\overline{x}$感兴趣，并非因为我们希望$\overline{x}$包含尽量少的元素。就算我们没有按照直觉“不要添加任何不必要的元素”来刻画某个特殊的$\mathcal{C}_x$中的集合，我们也一定会将$\mathcal{C}_x$中的那个最小元$\bigcap\mathcal{C}_x$拿出来研究。这只是因为最小元的特殊性，对于任何$T \in \mathcal{C}_x$，都有$\bigcap\mathcal{C}_x \subset T$。这正是集族$\mathcal{C}_x$具有的泛性质，它由一个集族中的成员$\bigcap\mathcal{C}_x$与该成员到其他成员的包含关系刻画。因此，这个成员$\bigcap\mathcal{C}_x$本身就是特别的，它值得我们对它进行研究。在这里，我们又一次体会到了泛性质的重要性。
 \end{remark}
 
+在定义完$x$的后继闭包$\overline{x}$后，我们可以由它在$\mathcal{C}_x$中的最小性质，得到它一条重要性质。这条性质可以用来证明$\overline{x}$的子集$A$是$\overline{x}$，它实际上是数学归纳法的抽象化。我们将这条性质称为$\overline{x}$的归纳法：
+
+\begin{property}[$\overline{x}$的归纳法]
+	对于后继集合$(X, s)$，$x \in X$，$A \subset X$，若$A$满足Base性质与Inductive性质，则$A = \overline{x}$。
+\end{property}
+
+\begin{proof}
+	首先，由于$A$满足Base性质与Inductive性质，知$A \in \mathcal{C}_x$。由$\overline{x}$的最小性，有$A \supset \overline{x}$。结合$A \subset \overline{x}$知$A = \overline{x}$。
+\end{proof}
+
+\begin{remark}
+	归纳法的证明过程是对$\overline{x}$的最小性的包装。
+\end{remark}
+
+实际上，我们会发现，对一个元素$x$的后继闭包的定义中，关键的是含$x$的后继闭子集族$\mathcal{C}_x$。在$T \in \mathcal{C}_x$的两条要求，Base与Inductive中，只有Inductive是对于$T$本身的一个性质，Base用于保证$x$在$T$中。因此，我们可以将一个元素的后继闭包的概念，拓广为一个子集$A \subset X$的后继闭包的概念。为了便于叙述，我们先将Inductive性质单独定义出来：
+
+\begin{definition}[Inductive性质]
+	对于后继集合$(X, s)$，$T \subset X$，我们称$T$满足Inductive性质，如果$\mathop{\forall}\limits_{y \in T} ys \in T$。
+\end{definition}
+
+\begin{remark}
+	我们也称$T$为闭集或后继闭集，可以说这是因为它在后继算子$s$下封闭。但其实有着更为深刻的原因，这个原因涉及对$X$上由$s$诱导一个拓扑结构的讨论。
+	%这个讨论我们放在后面的章节中
+	在之后我们将相比“$T$满足Inductive性质”更多地使用“$T$是闭集”这个术语。
+\end{remark}
+
+有了Inductive性质的定义，定义一个子集$A$的后继闭包的过程完全类似于定义一个元素$x$的后继闭包的过程，只是将对$x \in T$的Base性质改为对$A \subset T$的Base性质。我们逐一叙述含$A$的后继闭集族$\mathcal{C}_A$的定义，以及$A$的后继闭包$\overline{A}$的定义，还有它们的性质：
+
+\begin{definition}[包含$A$的后继闭集族$\mathcal{C}_A$]
+	对于后继集合$(X, s)$，$A \subset X$，我们定义含$A$的后继闭集族$\mathcal{C}_A$为满足以下性质的集合$T \subset X$的集族：
+	\begin{description}
+		\item[Base on $A$] $A \subset T$
+		\item[Inductive] $\mathop{\forall}\limits_{y \in T} ys \in T$
+	\end{description}
+\end{definition}
+
+\begin{property}
+	对于后继集合$(X, s)$，$A \subset X$，$\mathcal{C}_A$一定非空，且有交性质。特别地，$\bigcap\mathcal{C}_A \in \mathcal{C}_A$。
+\end{property}
+
+\begin{definition}[子集$A$的后继闭包]
+	对于后继集合$(X, s)$，$A \subset X$，我们定义$A$生成的后继闭包$\overline{A}$为$\bigcap\mathcal{C}_A$。
+\end{definition}
+
+\begin{property}
+	对于后继集合$(X, s)$，$A \subset X$，$\overline{A}$是$\mathcal{C}_A$关于包含关系$\subset$的最小元。这个事实包含两个性质，一是$\overline{A}$本身是一个含$A$的后继闭集，即$\overline{A} \in \mathcal{C}_A$；二是对于任意含$A$的后继闭集$T \in \mathcal{C}_A$，有$\overline{A} \subset T$。
+\end{property}
+
+\begin{remark}
+	类似于对元素$x$的后继闭包的评价，在这里我们关注子集$A$的后继闭包$\overline{A}$也是必然的。
+\end{remark}
+
+\begin{property}[$\overline{A}$的归纳法]
+	对于后继集合$(X, s)$，$A \subset X$，$B \subset X$，若$B$满足Base on $A$性质与Inductive性质，则$B = \overline{A}$。
+\end{property}
+
+\begin{remark}
+	归纳法的证明过程是对$\overline{A}$的最小性的包装。
+\end{remark}
+
+上面性质的证明完全类似于对元素$x$的后继闭包的性质的证明。这里我们不再赘述。在定义了子集的后继闭包后，我们可以发现，对一个元素$x \in X$，含有元素$x$的后继闭集族$\mathcal{C}_x$无非是包含单点集$\{x\}$的后继闭集族$\mathcal{C}_{\{x\}}$，元素$x$的后继闭包也无非是单点集$\{x\}$的后继闭包$\overline{\{x\}}$。另外，我们还可以进一步提问：子集$A \subset X$的后继闭包能否用元素的后继闭包来表示？如果可以，那么元素和子集的后继闭包两个概念可以互相表达，非常优美。事实上，我们可以证明以下定理，其证明要用到泛性质。为了加深对泛性质的理解，我们将这个事实叙述并证明：
+
+\begin{theorem}
+	对于后继集合$(X, s)$，$A \subset X$，$\overline{A} = \bigcup\limits_{x \in A}\overline{x}$。
+\end{theorem}
+
+\begin{proof}
+	首先，我们证明$\bigcup_{x \in A}\overline{x} \subset \overline{A}$。对于任意$y \in \bigcup_{x \in A}\overline{x}$，存在$x \in A$，使得$y \in \overline{x}$。由于$x \in A$，$\overline{A}$满足Base on $A$，自然也满足Base on $x$，再结合$\overline{A}$是闭集，可知$\overline{A} \in \mathcal{C}_x$，进而由$\overline{x}$的最小性知$\overline{x} \subset \overline{A}$。由此知$y \in \overline{A}$。因此$\bigcup_{x \in A}\overline{x} \subset \overline{A}$。接下来，我们证明$\overline{A} \subset \bigcup_{x \in A}\overline{x}$。由于$\overline{A}$是含$A$的最小闭集，我们只要证明$\bigcup_{x \in A}\overline{x}$是含$A$的闭集，就可以得到这个包含关系。对于任意$x \in A$，$\overline{x}$是含$x$的闭集，进而$\bigcup_{x \in A}\overline{x}$是含$A$的闭集。由于$\overline{A}$是含$A$的最小闭集，知$\overline{A} \subset \bigcup_{x \in A}\overline{x}$。综上，$\overline{A} = \bigcup_{x \in A}\overline{x}$。
+\end{proof}
+
+\begin{remark}
+	这个证明中，利用了后继闭集的任意并也是后继闭集这个性质。这个性质的证明是直接的，只要注意到任意并仍然满足Inductive性质即可。但是，在一般的拓扑空间中，闭集的任意并不一定是闭集。
+\end{remark}
+
+\subsection{后继集合的拓扑结构}
+
+本节内容不是必要的，但是对于了解拓扑的读者来说，可以大大加深对后继集合的理解。在上一节中我们已经提出了“闭包”，“闭集”的概念。本节我们就接着上节的讨论，从闭集出发定义后继集合的拓扑结构。在术语上，因为我们在集合$X$上定义了拓扑，所以我们更愿意将$X$称为一个空间，而将其中的元素称为点。我们将后继集合$(X, s)$称为一个后继空间。在定义后继空间的拓扑结构之前，我们先回顾一下拓扑空间的通常定义：
+
+\begin{definition}[拓扑空间]
+	拓扑空间是一个二元组$(X, \mathcal{T})$，其中$X$是一个集合，$\mathcal{T}$是$X$的子集族，满足以下性质：
+	\begin{description}
+		\item[空集与全集是开集] $\emptyset, X \in \mathcal{T}$；
+		\item[有限交性质] 若$U, V \in \mathcal{T}$，则$U \cap V \in \mathcal{T}$；
+		\item[任意并性质] 若$\mathop{U_i}\limits_{i \in I} \in \mathcal{T}$，则$\bigcup\limits_{i \in I} U_i \in \mathcal{T}$。
+	\end{description}
+	$\mathcal{T}$中的元素称为$X$中的开集。
+\end{definition}
+
+以上是从开集出发的定义。在这个定义中，闭集被定义为开集的补集。由于一个点集的补集和点集本身互为对偶，而交集和并集在补集操作下也是对偶的。%这里可以说得更详细一些
+因此我们也可以从闭集出发定义拓扑结构。从闭集出发的拓扑空间的定义如下：
+
+\begin{definition}[拓扑空间的闭集定义]
+	拓扑空间是一个二元组$(X, \mathcal{F})$，其中$X$是一个集合，$\mathcal{F}$是$X$的子集族，满足以下性质：
+	\begin{description}
+		\item[空集与全集是闭集] $\emptyset, X \in \mathcal{F}$；
+		\item[有限并性质] 若$F, G \in \mathcal{F}$，则$F \cup G \in \mathcal{F}$；
+		\item[任意交性质] 若$\mathop{F_i}\limits_{i \in I} \in \mathcal{F}$，且$I$非空，则$\bigcap\limits_{i \in I} F_i \in \mathcal{F}$。
+	\end{description}
+	$\mathcal{F}$中的元素称为$X$中的闭集。
+\end{definition}
+
+在后继集合中，我们已经将一个子集$A \subset X$的闭包定义为具有Base on $A$与Inductive性质的最小子集。在拓扑空间中，一个点集是闭集的充要条件是它与它的闭包相等。因此，我们可以将$X$中的闭集定义为满足$F = \overline{F}$的子集$F$。对$F \subset X$，因为$F$必定满足Base on $F$性质，故$F$是闭集的充要条件是$F$满足Inductive性质。因此，我们可以将$X$中的闭集定义为满足Inductive性质的子集$F$。这样，我们就可以从闭集出发定义后继集合的拓扑结构：
+
+\begin{definition}[后继集合的拓扑结构]
+	对于后继集合$(X, s)$，我们定义$X$的闭集族$\mathcal{F}$为所有满足Inductive性质的子集的集族。由此可诱导$X$的拓扑结构，使$X$成为拓扑空间，我们称之为后继空间，闭集族$\mathcal{F}$称为后继空间的标准闭集族。
+\end{definition}
+
+\begin{property}
+	这样定义的后继空间$(X, \mathcal{F})$满足拓扑空间的闭集定义。
+\end{property}
+
+\begin{proof}
+	首先，由于$X$是后继集合，$X$满足Inductive性质，因此$X \in \mathcal{F}$。又由于$\emptyset$满足Inductive性质，$\emptyset \in \mathcal{F}$。接下来，我们证明$\mathcal{F}$满足有限并性质。实际上我们可以证明$\mathcal{F}$具有比有限并更强的任意并性质。对于任意$\mathop{F_i}\limits_{i \in I} \in \mathcal{F}$，对任意$i \in I$，$F_i$满足Inductive性质。任取$x \in \bigcup_{i \in I} F_i$，必存在$i \in I$使$x \in F_i$。由$F_i$满足Inductive性质，知$xs \in F_i$，从而$xs \in \bigcup_{i \in I} F_i$。因此$\bigcup_{i \in I} F_i$满足Inductive性质，故$\bigcup_{i \in I} F_i \in \mathcal{F}$。接下来，我们证明$\mathcal{F}$满足任意交性质。对于任意$\mathop{F_i}\limits_{i \in I} \in \mathcal{F}$，其中$I$非空，对任意$i \in I$，$F_i$满足Inductive性质。任取$x \in \bigcap_{i \in I} F_i$满足Inductive性质，则对任意$i \in I$，$x \in F_i$，由$I$非空知存在$i \in I$使$x \in F_i$。由$F_i$满足Inductive性质，知$xs \in F_i$，从而$xs \in \bigcap_{i \in I} F_i$。因此$\bigcap_{i \in I} F_i$满足Inductive性质，故$\bigcap_{i \in I} F_i \in \mathcal{F}$。综上，$\mathcal{F}$满足拓扑空间的闭集定义。
+\end{proof}
+
+\begin{remark}
+	后继空间的并集满足任意并性质，这一点是相当特别的。
+\end{remark}
+
+%接下来可以讨论$s$的连续性，以及是否是开映射，闭映射等性质，并且可以讨论后继空间的紧性，以及后继空间的连通性等性质。
+%也可以讨论后继空间的分离性，这一点对后面讨论非常重要。
+
+\subsection{第一步划分：不可分离的点类}
+
+\subsection{第二步划分：不可区分的点类}
 
 \end{document}
