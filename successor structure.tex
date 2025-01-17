@@ -8,12 +8,14 @@
 \usepackage{amsthm}
 \usepackage{listings}
 \usepackage{tikz-cd}
+\usepackage{float}
 
 \newtheorem{definition}{定义}[section]
 \newtheorem{property}{性质}[section]
 \newtheorem{proposition}{命题}[section]
 \newtheorem{theorem}{定理}[section]
 \newtheorem{remark}{评价}[section]
+\newtheorem{example}{例}[section]
 
 \author{zysx997}
 \title{后继结构}
@@ -277,6 +279,82 @@
 %也可以讨论后继空间的分离性，这一点对后面讨论非常重要。
 
 \subsection{第一步划分：不可分离的点类}
+
+对于后继集合$(X, s)$，我们已经有了一个点和子集的后继闭包的概念。接下来我们从不同的点出发，考虑它们的后继闭包之间的关系。
+
+通过几个简单的例子，我们可以看出两个点之间的后继闭包之间的关系。在下面我们用图来表示一个后继集合。其中的点表示集合中的元素，有向的边表示元素之间的后继关系。
+
+\begin{example}
+	考虑以下后继集合$(X, s)$：
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node (x) at (0, 0) {$x$};
+			\node (y) at (1, 0) {$y$};
+			\draw[->] (x) -- (y);
+			\draw[->] (y) to [out=-45, in=45, looseness=8] (y);
+		\end{tikzpicture}
+	\end{figure}
+	从图中可以看出，$x$的后继闭包$\overline{x} = \{x, y\}$，$y$的后继闭包$\overline{y} = \{y\}$。可以看出，$x$的后继闭包真包含$y$的后继闭包。
+\end{example}
+
+\begin{example}
+	考虑以下后继集合$(X, s)$：
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node (x) at (0, 0) {$x$};
+			\node (y) at (1, 0) {$y$};
+			\node (x') at (0, 1) {$x'$};
+			\node (y') at (1, 1) {$y'$};
+			\draw[->] (x) -- (y);
+			\draw[->] (y) to [out=-45, in=45, looseness=4] (y);
+			\draw[->] (x') -- (y');
+			\draw[->] (y') to [out=-45, in=45, looseness=4] (y');
+		\end{tikzpicture}
+	\end{figure}
+	从图中可以看出，$x$的后继闭包$\overline{x} = \{x, y\}$，$x'$的后继闭包$\overline{x'} = \{x', y'\}$。可以看出，$x$的后继闭包与$x'$的后继闭包无交。
+\end{example}
+
+\begin{example}
+	考虑以下后继集合$(X, s)$：
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node (x) at (0, 0) {$x$};
+			\node (y) at (1, 0) {$y$};
+			\node (x') at (0, 1) {$x'$};
+			\draw[->] (x) -- (y);
+			\draw[->] (x') -- (y);
+			\draw[->] (y) to [out=-45, in=45, looseness=4] (y);
+		\end{tikzpicture}
+	\end{figure}
+	从图中可以看出，$x$的后继闭包$\overline{x} = \{x, y\}$，$x'$的后继闭包$\overline{x'} = \{x', y\}$。可以看出，$x$的后继闭包与$x'$的后继闭包有交，但没有包含关系。
+\end{example}
+
+\begin{example}
+	考虑以下后继集合$(X, s)$：
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node (x) at (0, 0) {$x$};
+			\node (y) at (1, 0) {$y$};
+			\draw[->] (x) to[bend left] (y);
+			\draw[->] (y) to[bend left] (x);
+		\end{tikzpicture}
+	\end{figure}
+	从图中可以看出，$x$的后继闭包$\overline{x} = \{x, y\}$，$y$的后继闭包$\overline{y} = \{x, y\}$。可以看出，$x$的后继闭包与$y$的后继闭包相等。但$x$与$y$本身不相等。
+\end{example}
+
+上面的每个例子中，后继集合的元素个数都较少，目的是为了用最简单的例子来展示后继闭包之间的不同关系。实际上，可以在上面的例子中添加一些新的点，但它们之间关系的基本情况是差不多的。我们能看到，两个点的后继闭包，大体可以分为无交和有交两种情况，而有交的情况又可继续分为相等、真包含、不相包含这三种。对于后继闭包无交的两个点，看上去它们从属于两个不同的分支，而有交的两个点看上去则属于同一个分支。这个观察引出了一个猜测的方向：是否可以将后继集合中的点分为不同的分支，使得同一分支中的点的后继闭包相等，不同分支中的点的后继闭包无交？换句话说，这是在问“后继闭包有交”是否能导出集合的划分，也就是问它是否是一个等价关系。
+
+借用拓扑的术语，我们定义两个点的不可分离性：
+
+\begin{definition}[不可分离的点]
+	对于后继集合$(X, s)$，$x, y \in X$，如果$x$的后继闭包$\overline{x}$与$y$的后继闭包$\overline{y}$满足：$y \in \overline{x} \vee x \in \overline{y}$，则称$x$与$y$是不可分离的。
+\end{definition}
+
+
 
 \subsection{第二步划分：不可区分的点类}
 
